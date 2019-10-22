@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+
+    </head>
+    <body>
+
+      <header>
+            <div class="container" width="100%">
+                <div class="row" style="border-style: solid">
+                    <div class="col-md-4">
+                    </div>
+
+                    <div class="col-md-4" text-center>
+                    <h1>Spelling Bee</h1>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="/#">    <img src="/static/bee.jpg"></a>
+                    </div>
+
+                </div>
+            </div>
+
+      </header>
+
+      {% block content %}{% endblock %}
+
+    </body>
+</html>

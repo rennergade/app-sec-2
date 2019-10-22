@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Spelling Bee! - Login{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <br><br>
+    </div>
+
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+     
+
+
+            <form action="" method="post">
+                <input id="uname" type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+                <input id="pword" type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+                <input id="2fa" type="password" placeholder="2fa" name="auth" value="{{ request.form.auth }}">
+
+                <br>
+                <input class="btn btn-default" type="submit" value="Login">
+            </form>
+
+            {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+            {% endif %}
+
+
+    </div>
+
+
+    <div class="col-md-4">
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}
