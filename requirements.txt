@@ -1,5 +1,5 @@
-pytest>=4.0.0
-tox>=3.14.0
-Flask==1.1.1
-bleach==3.1.0
-Flask-WTF==0.14.2
+pytest
+tox
+Flask
+bleach
+Flask-WTF
