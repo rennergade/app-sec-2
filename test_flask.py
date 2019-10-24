@@ -12,7 +12,7 @@ Documentation:
 
 import pytest
 
-import app.py
+import app
 
 def test_hello_world(app):
     res = app.get("/")
