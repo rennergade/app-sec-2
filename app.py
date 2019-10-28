@@ -9,6 +9,8 @@ from flask_wtf.csrf import CSRFProtect
 def create_app(config=None):
     app = Flask(__name__)
 
+    app.debug = True
+
     app.secret_key = os.urandom(16)
 
     # using flask_wtf for csrf protection
@@ -80,8 +82,10 @@ def create_app(config=None):
         
             status = register_login(bleached_uname, bleached_pass, bleached_auth)
             if status == 0:
+                app.logger.info('%s registered successfully', bleached_uname)
                 success = 'Registration Success'
             elif status == 1:
+                app.logger.error('%s registration failed', bleached_uname)
                 success = 'Error Invalid Registration'
             else:
                 success = 'System Error'
@@ -104,8 +108,10 @@ def create_app(config=None):
             if status == 0:
                 result = 'Success'
                 session['username'] = bleached_uname
+                app.logger.info('%s logged in successfully', bleached_uname)
                 loggedin = True
             elif status == 1:
+                app.logger.error('%s log in failed', bleached_uname)
                 result = 'Invalid username/password'
             elif status == 2:
                 result = '2fa'
@@ -128,6 +134,8 @@ def create_app(config=None):
                 textout = bleach.clean(request.form['inputtext'])
     
                 # we've got to write the text to a file for the checker to work (takes file input)
+                app.logger.info('attempting to spell check %s ', textout)
+
                 textfile = 'textout.txt'
                 with open(textfile, 'w+') as f:
                     f.write(textout)
@@ -151,6 +159,8 @@ def create_app(config=None):
     @app.route('/logout')
     def logout():
         session.pop('username', None)
+        app.logger.info('user logged out')
+
         return render_template('home.html')
 
 
